@@ -5,7 +5,7 @@
 #include <chrono>
 #include <cstring>
 #include <bitset>
-
+//currently is 1600 Million keys per sec max, avg is 1500 M/s (on laptop vistual studio only)
 alignas(32) static int left_count_table [256][8];
 alignas(32) static int right_count_table [256][8];
 static int left_amount [256];
