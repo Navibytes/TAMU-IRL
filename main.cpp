@@ -64,8 +64,9 @@ int main() {
         __m256i right_vals = _mm256_permutevar8x32_epi32(keysVec, rightVecTable);
         _mm256_storeu_si256((__m256i*) & right_Bucket[rheader], right_vals);
         _mm256_storeu_si256((__m256i*) & left_Bucket[lheader], left_vals);
-        lheader += left_amount[mask];
-        rheader += (8 - left_amount[mask]);
+        int left_add = left_amount[mask];
+        lheader += left_add;
+        rheader += (8 - left_add);
     }
     auto end = std::chrono::high_resolution_clock::now();
 
