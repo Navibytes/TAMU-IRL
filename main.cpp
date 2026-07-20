@@ -7,9 +7,8 @@
 #include <bitset>
 #include <cstdlib>
 #include <new>
-#include <malloc.h> // Required for _aligned_malloc and _aligned_free
-#include <stdlib.h>
-//currently is 1879 Million keys per sec max, avg is 1800 M/s (on laptop vistual studio only)
+#include <cstdint>
+//currently is 1959 Million keys per sec max, avg is 1900 M/s (on laptop vistual studio only)
 alignas(32) static int left_count_table [256][8];
 alignas(32) static int right_count_table [256][8];
 static int left_amount [256];
