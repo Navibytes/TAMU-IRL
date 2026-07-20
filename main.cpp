@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <new>
 #include <cstdint>
-//currently is 1959 Million keys per sec max, avg is 1900 M/s (on laptop vistual studio only)
+//currently is 1963 Million keys per sec max, avg is 1940 M/s (on laptop vistual studio only)
 alignas(32) static int left_count_table [256][8];
 alignas(32) static int right_count_table [256][8];
 static int left_amount [256];
@@ -63,9 +63,9 @@ int main() {
         __m256i right_vals = _mm256_permutevar8x32_epi32(keysVec, rightVecTable);
         _mm256_storeu_si256((__m256i*) & right_Bucket[rheader], right_vals);
         _mm256_storeu_si256((__m256i*) & left_Bucket[lheader], left_vals);
-        int left_add = left_amount[mask];
-        lheader += left_add;
-        rheader += (8 - left_add);
+        int right_add = _mm_popcnt_u32(mask);
+        rheader += right_add;
+        lheader += (8 - right_add);
     }
     auto end = std::chrono::high_resolution_clock::now();
 
